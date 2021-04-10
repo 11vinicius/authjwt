@@ -23,6 +23,9 @@ use App\Http\Controllers\groupUserController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/register', [AuthController::class, 'register']);
+
+
 
 Route::group(['middleware'=>['apiJwt']],function(){
     Route::get('/index', [userController::class, 'index']);
