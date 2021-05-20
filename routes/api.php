@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\userController;
 use App\Http\Controllers\SoapWebService;
 
 /*
@@ -21,14 +20,16 @@ use App\Http\Controllers\SoapWebService;
 //     return $request->user();
 // });
 
-// Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/connection', [SoapWebService::class, 'instance_workflow']);
-
-
+Route::post('/create', [AuthController::class, 'register']);
 
 Route::group(['middleware'=>['apiJwt']],function(){
-    Route::get('/index', [userController::class, 'index']);
+
+    Route::post('/newWorkflow', [SoapWebService::class, 'instance_workflow']);
+
+    Route::put('/editWokflow', [SoapWebService::class, 'edit_entity']);
+
 });
 
 
